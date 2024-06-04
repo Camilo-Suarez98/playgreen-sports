@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 
 const Root = () => {
   return (

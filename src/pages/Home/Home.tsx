@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { fetchSports } from "../utils/fetchSports";
+import { fetchSports } from "../../utils/fetchSports";
 
 interface Sports {
   idSport: number,
