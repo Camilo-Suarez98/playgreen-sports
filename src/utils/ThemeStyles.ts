@@ -12,7 +12,7 @@ export const darkTheme: Theme = {
   background: "#181828",
   text: "#FFFFFF",
   text2: "#FEFEFE",
-  color1: "#2C2B3E",
+  color1: "#2F2F43",
   color2: "#1F1F31",
   color3: "#FFFFFF",
   color4: "#EA596F",

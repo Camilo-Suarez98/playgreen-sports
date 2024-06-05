@@ -1,19 +1,25 @@
 import { Outlet } from "react-router-dom";
-import styled, { ThemeProvider } from "styled-components";
+import { ThemeProvider } from "styled-components";
+
+import {
+  LayoutDiv
+} from "./Root.styled";
+import { darkTheme, lightTheme } from "../utils/ThemeStyles";
+import { useState } from "react";
+import { GlobalStyles } from "../components/GlobalStyle/GlobalStyle";
 
 const Root = () => {
+  const [theme, setTheme] = useState<string>("dark");
+  const isDarkTheme = theme === "dark" ? darkTheme : lightTheme;
+
   return (
-    <LayoutDiv>
-      <h1>hello world</h1>
-      <Outlet />
-    </LayoutDiv>
+    <ThemeProvider theme={isDarkTheme}>
+      <GlobalStyles />
+      <LayoutDiv>
+        <Outlet />
+      </LayoutDiv>
+    </ThemeProvider>
   );
 };
 
 export default Root;
-
-const LayoutDiv = styled.div`
-  background-color: #181828;
-  width: 100%;
-  height: 100%;
-`;

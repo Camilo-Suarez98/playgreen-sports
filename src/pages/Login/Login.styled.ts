@@ -43,7 +43,9 @@ export const PseudoLabel = styled.span`
   position: absolute;
   top: 12px;
   left: 18px;
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  opacity: 0.6;
 `;
 
 export const Input = styled.input`
@@ -57,6 +59,7 @@ export const Input = styled.input`
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 18px;
   box-sizing: border-box;
+  background: ${({ theme }) => theme.color1};
 
   &:focus {
     outline: none;
