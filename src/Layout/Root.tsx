@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
+import { useState } from "react";
 
 import {
   LayoutDiv
 } from "./Root.styled";
 import { darkTheme, lightTheme } from "../utils/ThemeStyles";
-import { useState } from "react";
 import { GlobalStyles } from "../components/GlobalStyle/GlobalStyle";
 import MenuBar from "../components/MenuBar/MenuBar";
 

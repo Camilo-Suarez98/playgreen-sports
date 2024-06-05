@@ -11,13 +11,13 @@ const MenuBar = () => {
     <MenuWrapper>
       <ListMenu>
         <li>
-          <a href="#"><HomeIcon /></a>
+          <a href="/home"><HomeIcon /></a>
         </li>
         <li>
           <a href="#"><HistoryIcon /></a>
         </li>
         <li>
-          <a href="#"><LogoutIcon /></a>
+          <a href="/login"><LogoutIcon /></a>
         </li>
       </ListMenu>
     </MenuWrapper>
