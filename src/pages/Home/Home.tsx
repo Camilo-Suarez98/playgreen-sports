@@ -2,30 +2,43 @@ import { useEffect, useState } from "react";
 
 import { fetchSports } from "../../utils/fetchSports";
 
-interface Sports {
-  idSport: number,
-  strSportThumb: string
+interface Sport {
+  idSport: string;
+  strSport: string;
+  strFormat: string;
+  strSportThumb: string;
+  strSportIconGreen: string;
+  strSportDescription: string;
 }
 
-const Home = () => {
-  const [sports, setSports] = useState<Sports[]>([]);
+interface SportsResponse {
+  sports: Sport[];
+}
+
+const Home: React.FC = () => {
+  const [sportsData, setSportsData] = useState<SportsResponse | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetchSports();
-      setSports(response.data);
+      setSportsData(response.data);
     }
 
     fetchData();
   }, []);
 
+  console.log(sportsData);
+
   return (
     <div>
-      {sports.map((sport) => (
-        <div key={sport.idSport}>
-          <img src={sport.strSportThumb} alt="" />
-        </div>
-      ))}
+      {sportsData?.sports.map(sport => {
+        return (
+          <div key={sport.idSport}>
+            <img src={sport.strSportThumb} alt={sport.strSportDescription} />
+            <p>{sport.strSport}</p>
+          </div>
+        )
+      })}
     </div>
   );
 };
