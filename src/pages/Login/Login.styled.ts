@@ -68,6 +68,10 @@ export const Input = styled.input`
   }
 `;
 
+export const WarningMessage = styled.p`
+  color: ${({ theme }) => theme.color4};
+`;
+
 export const TextAndButton = styled.section`
   width: 100%;
   display: flex;
@@ -81,6 +85,8 @@ export const PasswordText = styled.p`
   line-height: 19.52px;
   opacity: 0.8;
   margin-top: 0;
+  text-align: left;
+  width: 100%;
 `;
 
 export const Button = styled.button`
@@ -92,4 +98,14 @@ export const Button = styled.button`
   box-shadow: 0px 4px 30px rgba(34, 105, 251, 0.8);
   border-radius: 25px;
   border: none;
+`;
+
+export const SignUpLink = styled.a`
+  color: #236bfe;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+    font-weight: 600;
+  }
 `;

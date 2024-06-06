@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
 import { auth } from "../../services/firebaseConfig";
@@ -12,22 +12,24 @@ import {
   InputWrapper,
   PseudoLabel,
   Input,
-  WarningMessage,
   TextAndButton,
   PasswordText,
   Button,
-  SignUpLink
-} from "./Login.styled";
+  SignUpLink,
+  WarningMessage
+} from "../Login/Login.styled";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPasword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
 
   const validEmail = email.includes('@');
   const validPassword = password.length >= 8;
+  const checkPassword = password === confirmPasword;
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!validEmail || !validPassword) {
@@ -35,7 +37,7 @@ const Login: React.FC = () => {
     }
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      await createUserWithEmailAndPassword(auth, email, password);
       navigate('/home');
     } catch (error) {
       throw new Error(`Sorry, the following error has ocurred: ${error}`);
@@ -48,7 +50,7 @@ const Login: React.FC = () => {
         <Title>Welcome</Title>
         <Paragraph>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Paragraph>
       </Text>
-      <LoginForm onSubmit={handleLogin}>
+      <LoginForm onSubmit={handleRegister}>
         <InputWrapper>
           <PseudoLabel>User</PseudoLabel>
           <Input
@@ -69,16 +71,24 @@ const Login: React.FC = () => {
             required
           />
         </InputWrapper>
-        {!validPassword || !validEmail &&
-          <WarningMessage>Email or password is invalid</WarningMessage>
-        }
+        <PasswordText>Password must have at least 8 characters</PasswordText>
+        <InputWrapper>
+          <PseudoLabel>Confirm Password</PseudoLabel>
+          <Input
+            type="password"
+            value={confirmPasword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            placeholder="****************"
+            required
+          />
+        </InputWrapper>
+        {!checkPassword && <WarningMessage>Password don't match</WarningMessage>}
         <TextAndButton>
-          <PasswordText>Forgot your password?</PasswordText>
-          <Button type="submit">Login</Button>
+          <Button type="submit">Sign up</Button>
         </TextAndButton>
         <PasswordText>
-          Don't you have an account? {" "}
-          <SignUpLink href="/sign-up">Click here</SignUpLink>
+          Already have an account? {" "}
+          <SignUpLink href="/login">Click here</SignUpLink>
         </PasswordText>
       </LoginForm>
     </LoginWrapper>
