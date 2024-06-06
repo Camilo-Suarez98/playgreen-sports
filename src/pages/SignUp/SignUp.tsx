@@ -23,6 +23,7 @@ const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPasword, setConfirmPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const validEmail = email.includes('@');
@@ -40,7 +41,11 @@ const Login: React.FC = () => {
       await createUserWithEmailAndPassword(auth, email, password);
       navigate('/home');
     } catch (error) {
-      throw new Error(`Sorry, the following error has ocurred: ${error}`);
+      if ((error as Error).message.includes("auth/email-already-in-use")) {
+        setErrorMessage("Email is already in use.");
+      } else {
+        setErrorMessage("Error registering: " + (error as Error).message);
+      }
     }
   };
 
@@ -82,6 +87,7 @@ const Login: React.FC = () => {
             required
           />
         </InputWrapper>
+        <WarningMessage>{errorMessage}</WarningMessage>
         {!checkPassword && <WarningMessage>Password don't match</WarningMessage>}
         <TextAndButton>
           <Button type="submit">Sign up</Button>
