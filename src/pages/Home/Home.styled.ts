@@ -4,6 +4,7 @@ export const HomeWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: start;
+  align-items: center;
   height: 100vh;
   width: 100%;
 `;
