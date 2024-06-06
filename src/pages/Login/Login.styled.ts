@@ -98,6 +98,7 @@ export const Button = styled.button`
   box-shadow: 0px 4px 30px rgba(34, 105, 251, 0.8);
   border-radius: 25px;
   border: none;
+  cursor: pointer;
 `;
 
 export const SignUpLink = styled.a`
