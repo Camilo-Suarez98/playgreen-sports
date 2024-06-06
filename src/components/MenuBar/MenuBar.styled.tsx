@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface ButtonSelected {
+  active: boolean;
+}
+
 export const MenuWrapper = styled.nav`
   background-color: ${({ theme }) => theme.color1};
   width: 100%;
@@ -20,4 +24,15 @@ export const ListMenu = styled.ul`
   border-radius: 24px;
   padding: 0rem 1rem;
   list-style: none;
+`;
+
+export const LinkButton = styled.button<ButtonSelected>`
+  background: ${({ active }) => active ? ({ theme }) => theme.color2 : 'transparent'};
+  color: ${({ theme }) => theme.text2};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  padding: 0.7rem;
+  border-radius: 1rem;
 `;
