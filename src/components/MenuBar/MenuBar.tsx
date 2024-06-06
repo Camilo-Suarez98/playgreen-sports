@@ -9,7 +9,7 @@ import {
 } from "./MenuBar.styled";
 import { auth } from "../../services/firebaseConfig";
 
-const MenuBar = () => {
+const MenuBar: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const isActive = (path: string) => location.pathname === path;

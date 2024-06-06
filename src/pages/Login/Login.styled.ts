@@ -60,6 +60,7 @@ export const Input = styled.input`
   border-radius: 18px;
   box-sizing: border-box;
   background: ${({ theme }) => theme.color1};
+  color: ${({ theme }) => theme.text};
 
   &:focus {
     outline: none;

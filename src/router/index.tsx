@@ -5,6 +5,7 @@ import Root from "../Layout/Root";
 import Intro from "../pages/Intro/Intro";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
+import History from "../pages/History/History";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: '/sign-up',
         element: <SignUp />
+      },
+      {
+        path: '/history',
+        element: <History />
       }
     ]
   },
