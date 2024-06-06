@@ -6,5 +6,6 @@ export const GlobalStyles = createGlobalStyle`
     background-color: ${({ theme }) => theme.background};
     width: 95%;
     height: 100%;
+    font-family: Arial, sans-serif;
   };
 `;
