@@ -18,7 +18,7 @@ export const ListMenu = styled.ul`
   width: 21rem;
   height: 85px;
   position: fixed;
-  bottom: 1rem;
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   background: ${({ theme }) => theme.color1};

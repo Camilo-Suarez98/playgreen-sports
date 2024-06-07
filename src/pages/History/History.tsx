@@ -13,10 +13,15 @@ import {
   Text,
   CardSport,
   SportImage,
+  SportName,
+  CardsWarpper,
+  IconWrapper
 } from "./History.styled";
 import { useNavigate } from "react-router-dom";
 import { fetchSports } from "../../utils/fetchSports";
 import Loader from "../../components/Loader/Loader";
+import { HeartIcon } from "../../components/svgs/HeartIcon";
+import { DislikeIcon } from "../../components/svgs/DislikeIcon";
 
 interface HistoyOfUser {
   id: string;
@@ -89,15 +94,25 @@ const History: React.FC = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        <ul>
-          {feedbacks.map((feedback) => (
-            <CardSport key={feedback.id}>
-              <p>{feedback.sportName}</p>
-              <SportImage src={feedback.sportThumb} alt={feedback.sportName} />
-              <p>{feedback.feedback}</p>
+        <CardsWarpper>
+          {feedbacks.map(({ id, sportThumb, sportName, feedback }) => (
+            <CardSport key={id}>
+              <SportImage
+                style={{
+                  backgroundImage: `url(${sportThumb || ""})`,
+                }}
+              >
+                <SportName>{sportName}</SportName>
+              </SportImage>
+              <IconWrapper>
+                {feedback === 'like' ?
+                  <HeartIcon width="24px" /> :
+                  <DislikeIcon width="20px" />
+                }
+              </IconWrapper>
             </CardSport>
           ))}
-        </ul>
+        </CardsWarpper>
       )}
       <MenuBar />
     </HistoryWrapper>

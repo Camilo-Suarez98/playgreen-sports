@@ -30,15 +30,60 @@ export const DateParagraph = styled.p`
   margin: 0;
 `;
 
+export const CardsWarpper = styled.ul`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 0;
+`;
+
 export const CardSport = styled.li`
   display: flex;
+  width: 22rem;
+  height: 4rem;
+  border-radius: 1.2rem;
+  background-color: ${({ theme }) => theme.color1};
+  display: flex;
+  font-size: 24px;
+  color: #fff;
 `;
 
-export const SportImage = styled.img`
-  width: 18rem;
-  object-fit: cover;
+export const SportImage = styled.div`
+  width: 80%;
+  height: 4rem;
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
 `;
 
-export const LoaderWrapper = styled.div`
-  z-index: 1;
+export const SportName = styled.p`
+  position: absolute;
+  margin-top: 1.1rem;
+  margin-left: 1rem;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 122.02%;
+  letter-spacing: -0.045em;
+  color: #fefefe;
+`;
+
+export const IconWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  background-color: red;
 `;
