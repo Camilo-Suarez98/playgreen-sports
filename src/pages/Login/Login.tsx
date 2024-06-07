@@ -57,6 +57,7 @@ const Login: React.FC = () => {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="user@greenrun.com"
             required
+            autoComplete="username"
           />
         </InputWrapper>
         <InputWrapper>
@@ -67,6 +68,7 @@ const Login: React.FC = () => {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="****************"
             required
+            autoComplete="current-password"
           />
         </InputWrapper>
         {!validPassword || !validEmail &&

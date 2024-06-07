@@ -1,11 +1,27 @@
 import { useEffect, useState } from "react";
 import { auth, db } from "../../services/firebaseConfig";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import axios from "axios";
 
-import { Paragraph, Title } from "../Login/Login.styled";
+import { Title } from "../Login/Login.styled";
 import MenuBar from "../../components/MenuBar/MenuBar";
 import { day, nameOfMonth } from "../../utils/Date";
+import { ArrowIcon } from "../../components/svgs/ArrowIcon";
+import {
+  HistoryWrapper,
+  ArrowButton,
+  DateParagraph,
+  Text,
+  CardSport,
+  SportImage,
+  SportName,
+  CardsWarpper,
+  IconWrapper
+} from "./History.styled";
+import { useNavigate } from "react-router-dom";
+import { fetchSports } from "../../utils/fetchSports";
+import Loader from "../../components/Loader/Loader";
+import { HeartIcon } from "../../components/svgs/HeartIcon";
+import { DislikeIcon } from "../../components/svgs/DislikeIcon";
 
 interface HistoyOfUser {
   id: string;
@@ -17,6 +33,8 @@ interface HistoyOfUser {
 
 const History: React.FC = () => {
   const [feedbacks, setFeedbacks] = useState<HistoyOfUser[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchFeedbacks = async () => {
@@ -27,7 +45,7 @@ const History: React.FC = () => {
           const q = query(
             collection(db, 'feedback'),
             where('userId', '==', user.uid)
-          )
+          );
 
           const querySnapshot = await getDocs(q);
           const feedbackList: HistoyOfUser[] = [];
@@ -36,14 +54,15 @@ const History: React.FC = () => {
             feedbackList.push({
               id: doc.id,
               sportId: doc.data().sportId,
-              feedback: doc.data().feeedback,
+              feedback: doc.data().feedback,
             });
           });
 
+          const sportsResponse = await fetchSports();
+
           const updateFeedback = await Promise.all(
             feedbackList.map(async (feedback) => {
-              const response = await axios.get('https://apimocha.com/playgreen/sports');
-              const sport = response.data.sports.find((s: any) => s.idSport === feedback.sportId);
+              const sport = sportsResponse.data.sports.find((s: any) => s.idSport === feedback.sportId);
               return {
                 ...feedback,
                 sportName: sport?.strSport,
@@ -53,8 +72,10 @@ const History: React.FC = () => {
           );
 
           setFeedbacks(updateFeedback);
+          setIsLoading(false);
         } catch (error) {
-          throw new Error(`The following error has ocurred: ${error}`);
+          throw new Error(`Has ocurred the following error: ${error}`);
+          setIsLoading(false);
         }
       }
     }
@@ -63,25 +84,38 @@ const History: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <HistoryWrapper>
+      <ArrowButton onClick={() => navigate("/home")}>
+        <ArrowIcon />
+      </ArrowButton>
       <Title>History</Title>
-      <Paragraph>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Paragraph>
-      <Paragraph>{`${day} ${nameOfMonth}`}</Paragraph>
-      {feedbacks.length === 0 ? (
-        <Paragraph>No feedback found.</Paragraph>
+      <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Text>
+      <DateParagraph>{`${day} ${nameOfMonth}`}</DateParagraph>
+      {isLoading ? (
+        <Loader />
       ) : (
-        <ul>
-          {feedbacks.map((feedback) => (
-            <li key={feedback.id}>
-              <p>Sport: {feedback.sportName}</p>
-              <img src={feedback.sportThumb} alt={feedback.sportName} />
-              <p>Feedback: {feedback.feedback}</p>
-            </li>
+        <CardsWarpper>
+          {feedbacks.map(({ id, sportThumb, sportName, feedback }) => (
+            <CardSport key={id}>
+              <SportImage
+                style={{
+                  backgroundImage: `url(${sportThumb || ""})`,
+                }}
+              >
+                <SportName>{sportName}</SportName>
+              </SportImage>
+              <IconWrapper>
+                {feedback === 'like' ?
+                  <HeartIcon width="24px" /> :
+                  <DislikeIcon width="20px" />
+                }
+              </IconWrapper>
+            </CardSport>
           ))}
-        </ul>
+        </CardsWarpper>
       )}
       <MenuBar />
-    </div>
+    </HistoryWrapper>
   );
 };
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 
 import { fetchSports } from "../../utils/fetchSports";
 import { HeartIcon } from "../../components/svgs/HeartIcon";
@@ -32,10 +32,25 @@ const Home: React.FC = () => {
     const fetchData = async () => {
       const response = await fetchSports();
       setSportsData(response.data.sports);
+
+      const user = auth.currentUser;
+      if (user) {
+        const q = query(
+          collection(db, 'feedback'),
+          where('userId', '==', user.uid)
+        );
+        const querySnapshot = await getDocs(q);
+        const evaluatedSportIds = querySnapshot.docs.map(doc => doc.data().sportId);
+
+        const filteredSports = sportsData.filter((sport: Sport) => !evaluatedSportIds.includes(sport.idSport));
+        setSportsData(filteredSports);
+      } else {
+        setSportsData(sportsData);
+      }
     }
 
     fetchData();
-  }, []);
+  }, [sportsData]);
 
   const handleLike = async () => {
     saveUserChoise('like');
@@ -76,7 +91,6 @@ const Home: React.FC = () => {
   }
 
   const currentSport = sportsData[currentIndex];
-  console.log(sportsData);
 
   // color={theme === 'light' ? "#D36060" : "#FFFFFF"}
   // to include insided of dislikeicon
