@@ -64,6 +64,7 @@ const Login: React.FC = () => {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="user@greenrun.com"
             required
+            autoComplete="username"
           />
         </InputWrapper>
         <InputWrapper>
@@ -74,6 +75,7 @@ const Login: React.FC = () => {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="****************"
             required
+            autoComplete="new-password"
           />
         </InputWrapper>
         <PasswordText>Password must have at least 8 characters</PasswordText>
@@ -85,6 +87,7 @@ const Login: React.FC = () => {
             onChange={(e) => setConfirmPassword(e.target.value)}
             placeholder="****************"
             required
+            autoComplete="new-password"
           />
         </InputWrapper>
         <WarningMessage>{errorMessage}</WarningMessage>

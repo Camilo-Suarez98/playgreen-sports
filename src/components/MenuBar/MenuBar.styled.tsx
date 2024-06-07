@@ -8,6 +8,7 @@ export const MenuWrapper = styled.nav`
   background-color: ${({ theme }) => theme.color1};
   width: 100%;
   border-radius: 24px;
+  z-index: 9999;
 `;
 
 export const ListMenu = styled.ul`

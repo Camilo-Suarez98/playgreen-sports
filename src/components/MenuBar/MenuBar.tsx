@@ -19,7 +19,7 @@ const MenuBar: React.FC = () => {
       await auth.signOut();
       navigate('/');
     } catch (error) {
-      throw new Error(`The following error has ocurred: ${error}`);
+      throw new Error(`Error logging out: ${error}`);
     }
   };
 

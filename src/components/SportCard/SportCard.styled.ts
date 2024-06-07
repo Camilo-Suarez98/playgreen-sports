@@ -18,6 +18,10 @@ export const SportImage = styled.img`
   left: 0;
   height: 100%;
   width: 100%;
+
+  @media (min-width: 640px) {
+    object-fit: fill;
+  }
 `;
 
 export const SportName = styled.p`
