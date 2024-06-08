@@ -8,10 +8,12 @@ import {
   LinkButton
 } from "./MenuBar.styled";
 import { auth } from "../../services/firebaseConfig";
+import { useTheme } from "../../context/ThemeContext";
 
 const MenuBar: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { theme } = useTheme();
   const isActive = (path: string) => location.pathname === path;
 
   const handleLogout = async () => {
@@ -28,18 +30,34 @@ const MenuBar: React.FC = () => {
       <ListMenu>
         <li>
           <LinkButton
-            onClick={() => navigate('/home')}
-            active={isActive('/home')}
+            onClick={() => navigate("/home")}
+            active={isActive("/home")}
           >
-            <HomeIcon />
+            <HomeIcon
+              color={
+                isActive("/home")
+                  ? theme === "dark"
+                    ? "#FFFFFF"
+                    : "#1A5BE1"
+                  : "#777777"
+              }
+            />
           </LinkButton>
         </li>
         <li>
           <LinkButton
-            onClick={() => navigate('/history')}
-            active={isActive('/history')}
+            onClick={() => navigate("/history")}
+            active={isActive("/history")}
           >
-            <HistoryIcon />
+            <HistoryIcon
+              color={
+                isActive("/history")
+                  ? theme === "dark"
+                    ? "#FFFFFF"
+                    : "#1A5BE1"
+                  : "#777777"
+              }
+            />
           </LinkButton>
         </li>
         <li>
@@ -47,7 +65,15 @@ const MenuBar: React.FC = () => {
             onClick={handleLogout}
             active={isActive('/login')}
           >
-            <LogoutIcon />
+            <LogoutIcon
+              color={
+                isActive("/history")
+                  ? theme === "dark"
+                    ? "#FFFFFF"
+                    : "#1A5BE1"
+                  : "#777777"
+              }
+            />
           </LinkButton>
         </li>
       </ListMenu>

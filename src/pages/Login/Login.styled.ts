@@ -19,6 +19,11 @@ export const Title = styled.h2`
   font-size: 42px;
   padding: 0;
   margin: 0;
+
+  @media (min-width: 500px) {
+    margin-bottom: 1rem;
+    font-size: 50px;
+  };
 `;
 
 export const Paragraph = styled.p`
@@ -37,6 +42,10 @@ export const LoginForm = styled.form`
 
 export const InputWrapper = styled.div`
   position: relative;
+
+  @media (min-width: 450px) {
+    width: 100%;
+  };
 `;
 
 export const PseudoLabel = styled.span`
@@ -67,6 +76,10 @@ export const Input = styled.input`
     border-color: none;
     box-shadow: 0 0 0 2px rgba(0, 119, 255, 0.2);
   }
+
+  @media (min-width: 450px) {
+    width: 100%;
+  };
 `;
 
 export const WarningMessage = styled.p`
@@ -86,6 +99,7 @@ export const PasswordText = styled.p`
   line-height: 19.52px;
   opacity: 0.8;
   margin-top: 0;
+  margin-bottom: 8px;
   text-align: left;
   width: 100%;
 `;
@@ -109,5 +123,5 @@ export const SignUpLink = styled.a`
   &:hover {
     text-decoration: underline;
     font-weight: 600;
-  }
+  };
 `;

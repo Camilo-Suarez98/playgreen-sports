@@ -1,15 +1,15 @@
 import { Outlet } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-import { useState } from "react";
 
 import {
   LayoutDiv
 } from "./Root.styled";
 import { darkTheme, lightTheme } from "../utils/ThemeStyles";
 import { GlobalStyles } from "../components/GlobalStyle/GlobalStyle";
+import { useTheme } from "../context/ThemeContext";
 
 const Root = () => {
-  const [theme, setTheme] = useState<string>("light");
+  const { theme } = useTheme()
   const isDarkTheme = theme === "dark" ? darkTheme : lightTheme;
 
   return (

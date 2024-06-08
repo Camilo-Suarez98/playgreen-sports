@@ -8,7 +8,7 @@ const Intro = () => {
   return (
     <>
       <h1>PlayGreen Sports</h1>
-      <Button onClick={() => navigate('/login')}>Login</Button>
+      <Button onClick={() => navigate("/login")}>Login</Button>
     </>
   );
 };

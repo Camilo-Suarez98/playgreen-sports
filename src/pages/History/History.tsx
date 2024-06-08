@@ -22,6 +22,7 @@ import { fetchSports } from "../../utils/fetchSports";
 import Loader from "../../components/Loader/Loader";
 import { HeartIcon } from "../../components/svgs/HeartIcon";
 import { DislikeIcon } from "../../components/svgs/DislikeIcon";
+import { useTheme } from "../../context/ThemeContext";
 
 interface HistoyOfUser {
   id: string;
@@ -35,6 +36,7 @@ const History: React.FC = () => {
   const [feedbacks, setFeedbacks] = useState<HistoyOfUser[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
+  const { theme } = useTheme();
 
   useEffect(() => {
     const fetchFeedbacks = async () => {
@@ -86,7 +88,13 @@ const History: React.FC = () => {
   return (
     <HistoryWrapper>
       <ArrowButton onClick={() => navigate("/home")}>
-        <ArrowIcon />
+        <ArrowIcon
+          color={
+            theme === "dark"
+              ? "#FFFFFF"
+              : "#232232"
+          }
+        />
       </ArrowButton>
       <Title>History</Title>
       <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Text>
@@ -105,9 +113,19 @@ const History: React.FC = () => {
                 <SportName>{sportName}</SportName>
               </SportImage>
               <IconWrapper>
-                {feedback === 'like' ?
-                  <HeartIcon width="24px" /> :
-                  <DislikeIcon width="20px" />
+                {feedback === "like"
+                  ? <HeartIcon
+                    width="24px"
+                    color={
+                      theme === "dark"
+                        ? "#FFFFFF"
+                        : "#2067F8"
+                    }
+                  />
+                  : <DislikeIcon
+                    width="20px"
+                    color="#EA596F"
+                  />
                 }
               </IconWrapper>
             </CardSport>

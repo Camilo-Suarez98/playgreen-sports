@@ -23,7 +23,7 @@ export const lightTheme: Theme = {
   text: "#161617",
   text2: "#232232",
   color1: "#FFFFFF",
-  color2: "#F3F3F3",
+  color2: "#F5F5F5",
   color3: "#2067F8",
   color4: "#EA596F",
 };
