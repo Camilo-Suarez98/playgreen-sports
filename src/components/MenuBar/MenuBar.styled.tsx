@@ -36,4 +36,9 @@ export const LinkButton = styled.button<ButtonSelected>`
   border: none;
   padding: 0.7rem;
   border-radius: 1rem;
+  cursor: pointer;
+
+  &:hover {
+    background: ${({ theme }) => theme.background};
+  }
 `;

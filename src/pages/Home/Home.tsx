@@ -14,6 +14,8 @@ import {
   DislikeButton,
   LikeButton
 } from "./Home.styled";
+import ThemeButton from "../../components/ThemeButton/ThemeButton";
+import { useTheme } from "../../context/ThemeContext";
 
 export interface Sport {
   idSport: string;
@@ -27,6 +29,7 @@ export interface Sport {
 const Home: React.FC = () => {
   const [sportsData, setSportsData] = useState<Sport[] | []>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,8 +39,8 @@ const Home: React.FC = () => {
       const user = auth.currentUser;
       if (user) {
         const q = query(
-          collection(db, 'feedback'),
-          where('userId', '==', user.uid)
+          collection(db, "feedback"),
+          where("userId", "==", user.uid)
         );
         const querySnapshot = await getDocs(q);
         const evaluatedSportIds = querySnapshot.docs.map(doc => doc.data().sportId);
@@ -53,27 +56,27 @@ const Home: React.FC = () => {
   }, [sportsData]);
 
   const handleLike = async () => {
-    saveUserChoise('like');
+    saveUserChoise("like");
     nextSport();
   };
 
   const handleDislike = async () => {
-    saveUserChoise('dislike');
+    saveUserChoise("dislike");
     nextSport();
   }
 
-  const saveUserChoise = async (userChoise: 'like' | 'dislike') => {
+  const saveUserChoise = async (userChoise: "like" | "dislike") => {
     const user = auth.currentUser;
 
     if (user) {
       try {
-        await addDoc(collection(db, 'feedback'), {
+        await addDoc(collection(db, "feedback"), {
           userId: user.uid,
           sportId: sportsData[currentIndex].idSport,
           feedback: userChoise,
         });
       } catch (error) {
-        console.error('Error saving feedback:', error);
+        throw new Error(`Error saving feedback, ${error}`);
       }
     }
   };
@@ -92,14 +95,15 @@ const Home: React.FC = () => {
 
   const currentSport = sportsData[currentIndex];
 
-  // color={theme === 'light' ? "#D36060" : "#FFFFFF"}
-  // to include insided of dislikeicon
   return (
     <HomeWrapper>
+      <ThemeButton />
       <SportCard sport={currentSport} />
       <ButtonsWrapper>
         <DislikeButton onClick={handleDislike}>
-          <DislikeIcon />
+          <DislikeIcon
+            color={theme === "light" ? "#D36060" : "#FFFFFF"}
+          />
         </DislikeButton>
         <LikeButton onClick={handleLike}>
           <HeartIcon />

@@ -5,6 +5,7 @@ export const HomeWrapper = styled.div`
   flex-direction: column;
   justify-content: start;
   align-items: center;
+  position: relative;
   height: 100vh;
   width: 100%;
 `;
@@ -25,6 +26,9 @@ export const DislikeButton = styled.button`
   background: ${({ theme }) => theme.color1};
   box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.08);
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   transition: transform 0.3s ease;
 
   &:active {
@@ -40,6 +44,9 @@ export const LikeButton = styled.button`
   background: linear-gradient(125.02deg, #236bfe -17.11%, #063ba8 98.58%);
   box-shadow: 0px 10px 25px rgba(35, 107, 254, 0.2);
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   transition: transform 0.3s ease;
 
   &:active {

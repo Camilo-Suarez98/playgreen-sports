@@ -9,6 +9,10 @@ export const HistoryWrapper = styled.div`
   color: ${({ theme }) => theme.text};
   padding: 3rem 1rem 0 1rem;
   transition: all 0.2s ease-in-out;
+
+  @media (min-width: 767px) {
+    padding: 7rem 1rem 5rem 1rem;
+  };
 `;
 
 export const ArrowButton = styled.button`
@@ -18,6 +22,12 @@ export const ArrowButton = styled.button`
   background: ${({ theme }) => theme.background};
   color: ${({ theme }) => theme.text};
   border: none;
+
+  cursor: pointer;
+
+  &:hover {
+
+  };
 `;
 
 export const Text = styled.p`
@@ -28,6 +38,10 @@ export const Text = styled.p`
 export const DateParagraph = styled.p`
   font-size: 14px;
   margin: 0;
+
+  @media (min-width: 425px) {
+    font-size: 18px;
+  }
 `;
 
 export const CardsWarpper = styled.ul`
@@ -36,6 +50,10 @@ export const CardsWarpper = styled.ul`
   align-items: center;
   gap: 1rem;
   padding: 0;
+
+  @media (min-width: 425px) {
+    width: 100%;
+  };
 `;
 
 export const CardSport = styled.li`
@@ -46,7 +64,11 @@ export const CardSport = styled.li`
   background-color: ${({ theme }) => theme.color1};
   display: flex;
   font-size: 24px;
-  color: #fff;
+  color: #FFFFFF;
+
+  @media (min-width: 425px) {
+    width: 100%;
+  };
 `;
 
 export const SportImage = styled.div`
@@ -66,7 +88,11 @@ export const SportImage = styled.div`
     height: 100%;
     border-radius: 12px;
     background-color: rgba(0, 0, 0, 0.5);
-  }
+  };
+
+  @media (min-width: 425px) {
+    width: 85%;
+  };
 `;
 
 export const SportName = styled.p`
@@ -77,7 +103,7 @@ export const SportName = styled.p`
   font-size: 24px;
   line-height: 122.02%;
   letter-spacing: -0.045em;
-  color: #fefefe;
+  color: #FEFEFE;
 `;
 
 export const IconWrapper = styled.div`
@@ -85,5 +111,8 @@ export const IconWrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 20%;
-  background-color: red;
+
+  @media (min-width: 425px) {
+    width: 15%;
+  };
 `;

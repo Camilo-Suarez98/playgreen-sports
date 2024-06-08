@@ -15,7 +15,12 @@ export const LoaderWrapper = styled.span`
   height: 56px;
   display: block;
   margin: 30px auto;
-  background-image: linear-gradient(#e1e1e1 50px, transparent 0), linear-gradient(#e1e1e1 50px, transparent 0), linear-gradient(#e1e1e1 50px, transparent 0), linear-gradient(#e1e1e1 50px, transparent 0), radial-gradient(circle 14px, #e1e1e1 100%, transparent 0);
+  background-image:
+    linear-gradient(${({ theme }) => theme.text} 50px, transparent 0),
+    linear-gradient(${({ theme }) => theme.text} 50px, transparent 0),
+    linear-gradient(${({ theme }) => theme.text} 50px, transparent 0),
+    linear-gradient(${({ theme }) => theme.text} 50px, transparent 0),
+    radial-gradient(circle 14px, ${({ theme }) => theme.text} 100%, transparent 0);
   background-size: 48px 15px , 15px 35px, 15px 35px, 25px 15px, 28px 28px;
   background-position: 25px 5px, 58px 20px, 25px 17px, 2px 37px, 76px 0px;
   background-repeat: no-repeat;
