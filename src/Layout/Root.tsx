@@ -6,7 +6,7 @@ import {
 } from "./Root.styled";
 import { darkTheme, lightTheme } from "../utils/ThemeStyles";
 import { GlobalStyles } from "../components/GlobalStyle/GlobalStyle";
-import { useTheme } from "../components/context/ThemeContext";
+import { useTheme } from "../context/ThemeContext";
 
 const Root = () => {
   const { theme } = useTheme();

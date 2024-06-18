@@ -8,7 +8,7 @@ import {
   LinkButton
 } from "./MenuBar.styled";
 import { auth } from "../../services/firebaseConfig";
-import { useTheme } from "../context/ThemeContext";
+import { useTheme } from "../../context/ThemeContext";
 
 const MenuBar: React.FC = () => {
   const navigate = useNavigate();
