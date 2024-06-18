@@ -4,7 +4,7 @@ import { RouterProvider } from 'react-router-dom';
 
 import './index.css';
 import router from './router/index.tsx';
-import { ThemeProvider } from './context/ThemeContext.tsx';
+import { ThemeProvider } from './components/context/ThemeContext.tsx';
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
