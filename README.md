@@ -32,12 +32,16 @@ The design of the app was based on a Figma mockup provided by PlayGreen too.
 ## The app has been deployed and is available at (playgreen-sport-381a6.firebaseapp.com).
 
 ## You can use the folowing Log-In info:
-- test@test.com
-- 12345678
+```
+email: test@test.com
+password: 12345678
+```
 
 ### This is another accout to Log in:
-- test1@test.com
-- 12345678
+```
+email: test1@test.com
+password: 12345678
+```
 
 - Or if you want you can also create a new account or Sign-In
 
@@ -45,11 +49,19 @@ The design of the app was based on a Figma mockup provided by PlayGreen too.
 
 ## To run the app locally, follow these instructions:
 * Clone the repository.
-``git clone https://github.com/Camilo-Suarez98/playgreen-sports``
+
+```
+git clone https://github.com/Camilo-Suarez98/playgreen-sports
+```
 * Install the necessary dependencies using npm install.
-``npm install``
+```
+npm install
+```
 * Run the app using npm start.
-``npm run dev``
+
+```
+npm run dev
+```
 
 # Author
 
