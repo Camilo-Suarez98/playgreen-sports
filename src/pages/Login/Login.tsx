@@ -16,7 +16,8 @@ import {
   TextAndButton,
   PasswordText,
   Button,
-  SignUpLink
+  SignUpLink,
+  Credentials
 } from "./Login.styled";
 
 const Login: React.FC = () => {
@@ -71,6 +72,7 @@ const Login: React.FC = () => {
             autoComplete="current-password"
           />
         </InputWrapper>
+        <Credentials>Credentials: test@test.com | password: 12345678</Credentials>
         {!validPassword || !validEmail &&
           <WarningMessage>Email or password is invalid</WarningMessage>
         }

@@ -86,6 +86,12 @@ export const WarningMessage = styled.p`
   color: ${({ theme }) => theme.color4};
 `;
 
+export const Credentials = styled.p`
+  text-align: left;
+  width: 100%;
+  margin: 0;
+`
+
 export const TextAndButton = styled.section`
   width: 100%;
   display: flex;
